@@ -1,6 +1,9 @@
 package com.fstg.gestionutilisateur.shared.dto;
 
+import com.fstg.gestionutilisateur.shared.dto.AddressDto;
+
 import java.io.Serializable;
+import java.util.List;
 
 // class for shared info betwene couche (presentation,service ,data layer)
 public class UserDto implements Serializable {
@@ -15,6 +18,16 @@ public class UserDto implements Serializable {
 	private String encryptedPassword;
 	private String emailVerification;
 	private Boolean emailVerficationStatus=false;
+	private List<AddressDto> adresses;
+
+
+	public List<AddressDto> getAdresses() {
+		return adresses;
+	}
+
+	public void setAdresses(List<AddressDto> adresses) {
+		this.adresses = adresses;
+	}
 
 	public long getId() {
 		return id;

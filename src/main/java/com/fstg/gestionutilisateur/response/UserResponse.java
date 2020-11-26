@@ -1,11 +1,15 @@
 package com.fstg.gestionutilisateur.response;
 
+import java.util.List;
+
 public class UserResponse {
 
 	private String fistName;
 	private String lastName;
 	private String email;
 	private String userId;
+	private List<AdresseResponse> adresses;
+
 
 	public String getFistName() {
 		return fistName;
@@ -39,4 +43,11 @@ public class UserResponse {
 		this.userId = userId;
 	}
 
+	public List<AdresseResponse> getAdresses() {
+		return adresses;
+	}
+
+	public void setAdresses(List<AdresseResponse> adresses) {
+		this.adresses = adresses;
+	}
 }

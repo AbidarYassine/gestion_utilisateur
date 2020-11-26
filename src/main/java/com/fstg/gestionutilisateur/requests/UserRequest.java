@@ -1,10 +1,9 @@
 package com.fstg.gestionutilisateur.requests;
 
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 public class UserRequest {
     @Size(min = 5)
@@ -19,8 +18,19 @@ public class UserRequest {
     private String email;
 
     @Size(min = 8, max = 12)
-    @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$\n", message = "Le mot de passe ne respecte pas la forme")
     private String password;
+
+
+    //     un utilisateur peut avoi plusieur Adresse
+    private List<AdresseRequest> adresses;
+
+    public List<AdresseRequest> getAdresses() {
+        return adresses;
+    }
+
+    public void setAdresses(List<AdresseRequest> adresses) {
+        this.adresses = adresses;
+    }
 
     public String getFistName() {
         return fistName;

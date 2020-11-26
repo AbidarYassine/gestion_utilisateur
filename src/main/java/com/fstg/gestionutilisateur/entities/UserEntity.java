@@ -1,11 +1,9 @@
 package com.fstg.gestionutilisateur.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "users")
 public class UserEntity implements Serializable {
@@ -35,6 +33,9 @@ public class UserEntity implements Serializable {
 
 	@Column(name = "emailVerficationStatus")
 	private Boolean emailVerficationStatus = false;
+// CascadeType.ALL l'hor de la creation d'une user ==> creation de ces addresse, and remove user==> remove all addresse
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	private List<AdresseEntity> adresses;
 
 	public long getId() {
 		return id;
@@ -100,4 +101,11 @@ public class UserEntity implements Serializable {
 		this.emailVerficationStatus = emailVerficationStatus;
 	}
 
+	public List<AdresseEntity> getAdresses() {
+		return adresses;
+	}
+
+	public void setAdresses(List<AdresseEntity> adresses) {
+		this.adresses = adresses;
+	}
 }

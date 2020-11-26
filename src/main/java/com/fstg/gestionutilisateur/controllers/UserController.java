@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,13 +58,12 @@ public class UserController {
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) throws Exception {
         if (userRequest.getFistName().isEmpty())
             throw new UserException(UserError.MISSING_REQUIRED_FIELD.getErrorMessage());
-        UserDto userDto = new UserDto();
-        BeanUtils.copyProperties(userRequest, userDto);
-
+        ModelMapper modelMapper = new ModelMapper();
+        UserDto userDto = modelMapper.map(userRequest, UserDto.class);
         UserDto createUser = userService.create(userDto);
 
-        UserResponse userResponse = new UserResponse();
-        BeanUtils.copyProperties(createUser, userResponse);
+        UserResponse userResponse = modelMapper.map(createUser, UserResponse.class);
+//        BeanUtils.copyProperties(createUser, userResponse);
 
         return new ResponseEntity<UserResponse>(userResponse, HttpStatus.CREATED);
     }
